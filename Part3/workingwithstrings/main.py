@@ -19,3 +19,6 @@ print(input_string[3])
 
 print("First character: " + input_string[0])
 print("Last character: " + input_string[len(input_string) - 1])
+
+print(input_string[0:4])
+print(input_string[2:])
