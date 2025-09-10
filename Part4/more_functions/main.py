@@ -60,3 +60,12 @@ def difference(a, b):
 
 result = difference(my_sum(5, 2), my_sum(2, 3))
 print("The result is", result)
+
+def print_many_times (message : str, times : int):
+    while times > 0:
+        print(message)
+        times -= 1
+
+def ask_for_name() -> str:
+    name = input("What's your name? ")
+    return name

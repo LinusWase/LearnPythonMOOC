@@ -25,15 +25,24 @@ def first_word(sentence):
     return sentence[:index]
 
 def second_word(sentence):
-    sentence = sentence[sentence.find(" ") + 1:]
-    return sentence[:sentence.find(" ")]
+    index = sentence.find(" ") + 1
+    sentence = sentence[index:]
+    if sentence.find(" ") > 0:
+        return sentence[:sentence.find(" ")]
+    return sentence
 
 
-def last_word(word):
-    print()
+def last_word(sentence):
+    while True:
+        index = sentence.find(" ") + 1
+        sentence = sentence[index:]
+        if index == 0:
+            return sentence
 
 if __name__ == "__main__":
-    sentence = "it was a dark and stormy python"
+    #sentence = "it was a dark and stormy python"
+    #sentence = "it was"
+    sentence ="once upon a time there was a programmer"
 
     print(first_word(sentence))  # it
     print(second_word(sentence))  # was
