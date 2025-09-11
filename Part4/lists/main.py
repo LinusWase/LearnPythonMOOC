@@ -28,3 +28,15 @@ print(numbers)
 
 print("Shoe sizes:")
 print(shoe_sizes)
+
+my_list = [2,5,1,2,4]
+print(sorted(my_list))
+print(my_list)
+
+greatest = max(my_list)
+smallest = min(my_list)
+list_sum = sum(my_list)
+
+print("Smallest:", smallest)
+print("Greatest:", greatest)
+print("Sum:", list_sum)

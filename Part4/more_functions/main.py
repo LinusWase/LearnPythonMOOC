@@ -1,3 +1,6 @@
+from logging import makeLogRecord
+
+
 def message():
     print("This message was brought to you by a function")
 
@@ -69,3 +72,31 @@ def print_many_times (message : str, times : int):
 def ask_for_name() -> str:
     name = input("What's your name? ")
     return name
+
+number = [1,2,3,4,5,6]
+number.insert(0,10)
+print(number)
+number.insert(2,20)
+print(number)
+
+my_list = [1,2,3,4,5,6]
+
+my_list.pop(2)
+print(my_list)
+my_list.pop(3)
+print(my_list)
+
+number = my_list.pop(1)
+print(number)
+print(my_list)
+
+my_list.remove(4)
+print(my_list)
+my_list.remove(6)
+
+my_list = [1, 2, 1, 2]
+
+my_list.remove(1)
+print(my_list)
+my_list.remove(1)
+print(my_list)
