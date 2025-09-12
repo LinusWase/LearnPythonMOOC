@@ -24,3 +24,11 @@ for i in range(10,20,2):
 
 for i in range(6,2,-2):
     print(i)
+
+#From a range to a list
+numbers = range(2,7)
+print(numbers)
+
+numbers = list(range(2,7))
+print(numbers)
+
