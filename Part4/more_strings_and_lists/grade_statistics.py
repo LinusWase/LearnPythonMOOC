@@ -71,7 +71,7 @@ simpler way as well. The string method split will chop the input up nicely. You 
 for python string split online.
 """
 
-def completed_exercises(number):
+def completed_exercises(number : int):
     points = 0
     if number < 10:
         return points
@@ -82,11 +82,19 @@ def completed_exercises(number):
 
 
 def statistics(my_list : list):
+    points_average = 0
+    pass_percentage = 100
     print("Statistics:")
     for item in my_list:
-        if item % 2 != 0:
-            print(completed_exercises(item))
-        print(item)
+        points_average += (completed_exercises(int(item[1])) + int(item[0])) / len(my_list)
+        if int(item[0]) < 10 or int(item[0]) + completed_exercises(int(item[1]) < 10):
+            continue
+            #FORTSÄTT LOGIK
+
+    print(f"Points average: {points_average}")
+    print("Pass percentage: ")
+    print("Grade distribution: ")
+
 
 
 def main():
@@ -96,7 +104,7 @@ def main():
         if user_input == "":
             statistics(my_list)
             break
-        user_input_new = list(map(int, user_input.split(" ")))
+        user_input_new = list(user_input.split(" "))
         my_list.append(user_input_new)
 
 
