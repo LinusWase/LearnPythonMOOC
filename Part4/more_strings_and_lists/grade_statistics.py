@@ -80,21 +80,42 @@ def completed_exercises(number : int):
         return points
     return None
 
-
 def statistics(my_list : list):
     points_average = 0
-    pass_percentage = 100
+    failed_class = 0
+    completed_percentage = 1
     print("Statistics:")
     for item in my_list:
         points_average += (completed_exercises(int(item[1])) + int(item[0])) / len(my_list)
-        if int(item[0]) < 10 or int(item[0]) + completed_exercises(int(item[1]) < 10):
-            continue
-            #FORTSÄTT LOGIK
+        if (int(item[0]) < 10) or (int(item[0]) + completed_exercises(int(item[1])) <= 14):
+            failed_class += 1
+    if failed_class > 0:
+        completed_percentage = (len(my_list) - failed_class) / len(my_list)
 
-    print(f"Points average: {points_average}")
-    print("Pass percentage: ")
-    print("Grade distribution: ")
-
+    print(f"Points average: {points_average:.1f}")
+    print(f"Pass percentage: {(completed_percentage * 100):.1f}")
+    print("Grade distribution: ", end="")
+    for i in range(5,-1,-1):
+        print(f"\n{i}: ", end="")
+        for item in my_list:
+            grade = completed_exercises(int(item[1])) + int(item[0])
+            if int(item[0]) >= 10:
+                if grade <= 14:
+                    grade = 0
+                elif grade <= 17:
+                    grade = 1
+                elif grade <= 20:
+                    grade = 2
+                elif grade <= 23:
+                    grade = 3
+                elif grade <= 27:
+                    grade = 4
+                elif grade <= 30:
+                    grade = 5
+            else:
+                grade = 0
+            if grade == i:
+                print("*", end="")
 
 
 def main():
