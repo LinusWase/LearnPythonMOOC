@@ -47,7 +47,6 @@ True
 """
 
 def check_row(sudoku: list):
-    checked_column = []
     for row_item in sudoku:
         checked_number = []
         for number in row_item:
