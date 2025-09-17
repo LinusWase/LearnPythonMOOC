@@ -21,13 +21,18 @@ The function should not have a return value. The matrix should be modified direc
 """
 
 def transpose(matrix: list):
-    new_sudoku = []
-    for row in matrix:
-        new_row = row[:]
-        new_sudoku.append(new_row[:])
-    new_sudoku.append("B")
-    print(new_sudoku)
-    print(matrix)
+    new_matrix = []
+    for number in matrix:
+        new_number = number[:]
+        new_matrix.append(new_number[:])
 
-matrix = [[1,2,3], [4,5,6], [7,8,9]]
+    for outer_index in range(len(matrix)):
+        for inner_index in range(len(matrix[outer_index])):
+            matrix[outer_index][inner_index] = new_matrix[inner_index][outer_index]
+    matrix = new_matrix[:]
+
+#matrix = [[1,2,3], [4,5,6], [7,8,9]]
+#matrix = [[1, 2], [1, 2]]
+matrix = [[10, 100], [10, 100]]
 transpose(matrix)
+print(matrix)
