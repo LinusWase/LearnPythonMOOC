@@ -75,13 +75,48 @@ def categorize_by_initial(my_list: list):
             groups[initial] = []
         groups[initial].append(word)
     return groups
-
+"""
 groups = categorize_by_initial(word_list)
 
 for key, value in groups.items():
     print(f"words beginning with {key}:")
     for word in value:
         print(word)
+"""
+
+def removing_keys_and_values_from_a_dictionary():
+    staff = {"Alan": "lecturer", "Emily": "professor", "David": "lecturer"}
+    if "Paul" in staff:
+        del staff["Paul"]
+        print("Deleted")
+    else:
+        print("This person is not a staff member")
+
+    deleted = staff.pop("David", None)
+    print(staff)
+    if deleted == None:
+        print("This person is not a staff member")
+    else:
+        print(deleted, "deleted")
+
+    staff.clear()
+    print(staff)
+
+def using_dictionaries_for_structured_data():
+    person1 = {"name": "Pippa Python", "height": 154, "weight": 61, "age": 44}
+    person2 = {"name": "Peter Pythons", "height": 174, "weight": 103, "age": 31}
+    person3 = {"name": "Pedro Python", "height": 191, "weight": 71, "age": 14}
+
+    people = [person1, person2, person3]
+
+    for person in people:
+        print(person["name"])
+
+    combined_height = 0
+    for person in people:
+        combined_height += person["height"]
+
+    print("The average height is", combined_height / len(people))
 
 if __name__ == '__main__':
     #using_a_dictionary()
@@ -89,4 +124,5 @@ if __name__ == '__main__':
     #how_key_and_values_work()
     #traversing_a_dictionary()
     #print(counts(word_list))
-    print()
+    #removing_keys_and_values_from_a_dictionary()
+    using_dictionaries_for_structured_data()
