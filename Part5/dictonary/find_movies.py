@@ -22,9 +22,7 @@ Sample output
 def find_movies(database: list, search_term: str):
     return_list = []
     for index in range(len(database)):
-        movie_name = database[index]["name"]
-        movie_name = movie_name.lower()
-        if search_term in movie_name:
+        if search_term in database[index]["name"].lower():
             return_list.append(database[index])
     return return_list
 
