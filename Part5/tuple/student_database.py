@@ -89,16 +89,13 @@ def summary(students: dict):
     average_grade = 0
     grade = 0
     for student in students:
-        print(students[student])
         for item in range(len(students[student])):
             grade += students[student][item][1]
-            if grade > average_grade:
-                average_grade = grade
-                grade = 0
-                name = student
-
-    print(f"best average grade {name}")
-    print(grade)
+        if (grade / len(students[student])) > average_grade:
+            average_grade = grade / (len(students[student]))
+            grade = 0
+            name = student
+    print(f"best average grade {average_grade} {name}")
 
 if __name__ == '__main__':
     """
@@ -123,6 +120,8 @@ if __name__ == '__main__':
     add_course(students, "Peter", ("Software Development Methods", 5))
     print_student(students, "Peter")
     """
+
+    """
     students = {}
     add_student(students, "Peter")
     add_student(students, "Eliza")
@@ -131,4 +130,17 @@ if __name__ == '__main__':
     add_course(students, "Peter", ("Advanced Course in Programming", 1))
     add_course(students, "Eliza", ("Introduction to Programming", 5))
     add_course(students, "Eliza", ("Introduction to Computer Science", 4))
+    summary(students)
+    """
+    students = {}
+    add_student(students, "Emily")
+    add_student(students, "Peter")
+    add_course(students, "Emily", ("Software Development Methods", 4))
+    add_course(students, "Emily", ("Software Development Methods", 5))
+    add_course(students, "Peter", ("Data Structures and Algorithms", 3))
+    add_course(students, "Peter", ("Models of Computation", 0))
+    add_course(students, "Peter", ("Data Structures and Algorithms", 2))
+    add_course(students, "Peter", ("Introduction to Computer Science", 1))
+    add_course(students, "Peter", ("Software Engineering", 3))
+    summary(students)
     summary(students)
