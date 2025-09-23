@@ -30,19 +30,17 @@ DDDDDDD
 NB: this exercise doesn't ask you to write any functions, so you should not place any code within an
 if __name__ == "__main__" block.
 """
-def print_letter(letters: list, user_input: int):
 
-    #print(letters[user_input-1] * ((user_input*2) -1))
-    for i in range(1, (user_input * 2)):
-        print(letters[user_input-i] * ((user_input*2)-1))
+layers = int(input("Layers: "))
 
+side_length = (layers * 2) -1
 
+for row in range(side_length):
+    row_string = ""
 
-def main():
-    letters = []
-    for i in range(65, 91): #ASCII for letters A to Z
-        letters += chr(i)
-    user_input = int(input("Layers: "))
-    print_letter(letters, user_input)
+    for column in range(side_length):
+        min_distance = min(row, side_length - 1 - row, column, side_length - 1 - column)
+        char_value = chr(ord('A') + (layers-1) - min_distance)
+        row_string += char_value
 
-main()
+    print(row_string)
