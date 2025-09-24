@@ -99,22 +99,12 @@ NB: this exercise doesn't ask you to write any functions, so you should not plac
 if __name__ == "__main__" block.
 """
 
-def combine(grade_list : list):
-    return sum(grade_list)
-
 def convert_to_final_grade(total_points: int):
-    if total_points >= 28:
-        return 5
-    elif total_points >= 24:
-        return 4
-    elif total_points >= 21:
-        return 3
-    elif total_points >= 18:
-        return 2
-    elif total_points >= 15:
-        return 1
-    else:
-        return 0
+    a = 0
+    limits = [15, 18, 21, 24, 28]
+    while a < 5 and total_points >= limits[a]:
+        a += 1
+    return a
 
 def read_student_info(filename: str):
     students = {}
@@ -137,7 +127,7 @@ def read_exercise_data(filename: str):
                 continue
             pic = parts[0]
             total_points = sum([int(p) for p in parts[1:]])
-            exercise_points[pic] = total_points // 4
+            exercise_points[pic] = total_points
     return exercise_points
 
 def read_exam_points(filename: str):
@@ -148,21 +138,31 @@ def read_exam_points(filename: str):
             parts = line.split(";")
             if parts[0] == "id":
                 continue
-            exam_points[parts[0]] = int(parts[1])
+            exam_points[parts[0]] = sum([int(p) for p in parts[1:]])
     return exam_points
+
+
+def print_information(students: dict, exercise_points : dict, exam_points : dict):
+
+    print(f"{"name":<30}{"exec_nbr":<10}{"exec_pts.":<10}{"exm_pts.":<10}{"tot_pts.":<10}{"grade":<10}")
+
+    for pic, name in students.items():
+        if pic in exercise_points and pic in exam_points:
+            total_points = exercise_points[pic]//4 + exam_points[pic]
+            final_grade = convert_to_final_grade(total_points)
+            print(f"{name:<30}{exercise_points[pic]:<10}{exercise_points[pic]//4:<10}{exam_points[pic]:<10}"
+                  f"{total_points:<10}{final_grade:<10}")
+        else:
+            print(f"{name:<30}{"0":<10}{"0":<10}{"0":<10}{"0":<10}{"0":<10}")
 
 def process_course_data(student_info_file: str, exercise_data_file: str, exam_points_file: str):
     students = read_student_info(student_info_file)
     exercise_points = read_exercise_data(exercise_data_file)
     exam_points = read_exam_points(exam_points_file)
 
-    for pic, name in students.items():
-        if pic in exercise_points and pic in exam_points:
-            total_points = exercise_points[pic] + exam_points[pic]
-            final_grade = convert_to_final_grade(total_points)
-            print(f"{name} {final_grade}")
-        else:
-            print(f"{name} 0")
+    print_information(students, exercise_points, exam_points)
+
+
 
 def main():
     student_info_file = input("Student information: ")
