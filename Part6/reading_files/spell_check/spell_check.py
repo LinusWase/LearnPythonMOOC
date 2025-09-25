@@ -24,26 +24,18 @@ if __name__ == "__main__" block.
 
 def main():
     user_input = input("Write text: ")
-    capitalize = False
-    user_input = user_input.lower()
     words = user_input.split()
-    if words[0] == words[0].capitalize():
-        capitalize = True
-
     correct_word = []
 
     with open("wordlist.txt") as file:
         wordlist = {word.strip() for word in file}
         for word in words:
-            #word_to_check = word.replace("'", "")
-            if word not in wordlist:
+            if word.lower() not in wordlist:
                 correct_word.append(f"*{word}*")
             else:
                 correct_word.append(word)
 
     for word in correct_word:
-        if capitalize:
-            word = word.capitalize()
         print(word, end=" ")
 
 
