@@ -1,3 +1,5 @@
+import os
+
 def creating_a_new_file():
     with open("new_file.txt", "w") as my_file:
         my_file.write("Hello there!\n")
@@ -36,9 +38,23 @@ def writing_CSV_files():
             line = line[:-1]
             my_file.write(line + "\n")
 
+def clearing_file_contents_and_deleting_files():
+    with open("new_file.txt", "w") as file:
+        pass
+
+    #or
+
+    open("new_file.txt", "w").close()
+
+def remove_a_file():
+    os.remove("new_file.txt")
+
+
 def main():
     #creating_a_new_file()
     #appending_data_to_an_existing_file()
-    writing_CSV_files()
+    #writing_CSV_files()
+    #clearing_file_contents_and_deleting_files()
+    #remove_a_file()
 
 main()
