@@ -34,10 +34,31 @@ def read_small_integer():
 
         print("This input is invalid")
 
-number = read_small_integer()
-print(number, "to the power of three is", number**3)
+#number = read_small_integer()
+#print(number, "to the power of three is", number**3)
 
-if __name__ == '__main__':
+def testing(x):
+    print(int(x) + 1)
+
+#try:
+#    number = input("Please type in a number: ")
+#    testing(number)
+#except:
+#    print("Something went wrong")
+
+def factorial(n):
+    if n < 0:
+        raise ValueError("The input was negative: " + str(n))
+    k = 1
+    for i in range (2, n + 1):
+        k *= i
+    return k
+
+print(factorial(3))
+print(factorial(6))
+print(factorial(-1))
+
+#if __name__ == '__main__':
     #input_validation()
     #read_integer()
-    read_small_integer()
+    #read_small_integer()
