@@ -73,3 +73,34 @@ def retrieve_all():
    request = urllib.request.urlopen(address, cafile=certifi.where())
    # the rest of your function
 ```
+
+# Part 2: Retrieving the data for a single course
+
+Each course also has its own URL, where more specific weekly data about the course is available. The URLs follow the 
+format https://studies.cs.helsinki.fi/stats-mock/api/courses/****/stats, where you would replace the stars with the contents of the field name for the course you want to access.
+
+For example, the data for the course docker2019 is at the address https://studies.cs.helsinki.fi/stats-mock/api/courses/docker2019/stats.
+
+Please write a function named retrieve_course(course_name: str), which returns statistics for the specified course, in dictionary format.
+
+For example, the function call retrieve_course("docker2019") would return a dictionary with the following contents:
+
+### Sample output
+
+>{ <br>
+>    'weeks': 4, <br>
+>    'students': 220, <br>
+>    'hours': 5966, <br>
+>    'hours_average': 27, <br>
+>    'exercises': 4988, <br>
+>    'exercises_average': 22 <br>
+>} <br>
+
+The values in the dictionary are determined as follows:
+
+- weeks: the number of JSON object literals retrieved
+- students: the maximum number of students in all the weeks
+- hours: the sum of all hour_total values in the different weeks
+- hours_average: the hours value divided by the students value (rounded down to the closest integer value)
+- exercises: the sum of all exercise_total values in the different weeks
+- exercises_average: the exercises value divided by the students value (rounded down to the closest integer value)

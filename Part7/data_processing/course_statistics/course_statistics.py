@@ -17,35 +17,34 @@ def retrieve_all():
 
 
 def retrieve_course(course: str):
-    my_request = urllib.request.urlopen("https://studies.cs.helsinki.fi/stats-mock/api/courses")
-    request = my_request.read()
-    courses = json.loads(request)
-
-    address = "https://studies.cs.helsinki.fi/stats-mock/api/courses/****/stats".replace("****", course)
-    my_request2 = urllib.request.urlopen(address)
-    request2 = my_request2.read()
-    courses2 = json.loads(request2)
+    url_name = "https://studies.cs.helsinki.fi/stats-mock/api/courses/****/stats".replace("****", course)
+    my_request = urllib.request.urlopen(url_name)
+    read_my_request = my_request.read()
+    course = json.loads(read_my_request)
 
     total_hours = 0
-    exercises_total = 0
-    for index in range(len(courses2)):
-        total_hours += (courses2[f"{index}"]["hour_total"])
-        exercises_total += (courses2[f"{index}"]["exercise_total"])
+    total_exercises = 0
+    total_students = 0
+    total_weeks = len(course.keys())
+    for key, value in course.items():
+        if total_students == 0:
+            total_students += (course[key]["students"])
+        total_hours += (course[key]["hour_total"])
+        total_exercises += (course[key]["exercise_total"])
 
-    full_info = {}
-    for index in range(len(courses)):
-        if courses[index]["name"] == course:
-            full_info = {'weeks': courses[index]["week"], 'students': courses2["0"]["students"], 'hours':
-                total_hours, 'hours_average': total_hours // courses2["0"]["students"], 'exercises':
-                             exercises_total, 'exercises_average': exercises_total // courses2["0"]["students"]}
-
+    full_info = {'weeks':total_weeks,
+                 'students': total_students,
+                 'hours':total_hours,
+                 'hours_average':total_hours // total_students,
+                 'exercises':total_exercises,
+                 'exercises_average':total_exercises // total_students}
     return full_info
 
 
 
 if __name__ == '__main__':
     print(retrieve_all())
-    print(retrieve_course("CCFUN"))
+    print(retrieve_course("docker2019"))
 
 """
 Saker att göra:
